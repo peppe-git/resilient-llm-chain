@@ -28,3 +28,5 @@ All notable changes to this project are documented here. The format follows
   streaming.
 - Documentation: concepts, configuration reference, hedge tuning guide, architecture decision records.
 - `scripts/scrub-check.sh` and `scripts/mutation-check.sh`.
+- Release build (`-Prelease`: sources, javadoc, signatures, Central Publisher Portal upload without
+  automatic publishing), `release` workflow on `v*` tags, Dependabot configuration and `RELEASING.md`.

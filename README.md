@@ -220,7 +220,7 @@ Where the others are better, say so:
 - [Configuration reference](docs/configuration.md).
 - [Tuning the hedge delay](docs/guides/hedge-tuning.md): method and formulas.
 - [Architecture decisions](docs/adr/).
-- [Changelog](CHANGELOG.md), [contributing](CONTRIBUTING.md), [security](SECURITY.md).
+- [Changelog](CHANGELOG.md), [contributing](CONTRIBUTING.md), [security](SECURITY.md), [releasing](RELEASING.md).
 
 ## License
 

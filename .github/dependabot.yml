@@ -1,0 +1,34 @@
+# SPDX-License-Identifier: Apache-2.0
+# Weekly updates, grouped so that a normal week opens at most a few pull requests. Security updates are
+# not grouped and arrive as soon as they are known. The cooldown leaves new releases a week to settle.
+version: 2
+updates:
+  - package-ecosystem: maven
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 5
+    groups:
+      maven-build-plugins:
+        applies-to: version-updates
+        patterns:
+          - org.apache.maven.plugins:*
+          - org.sonatype.central:*
+      maven-dependencies:
+        applies-to: version-updates
+        patterns:
+          - '*'
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      github-actions:
+        applies-to: version-updates
+        patterns:
+          - '*'
