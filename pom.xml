@@ -2,7 +2,8 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+         child.project.url.inherit.append.path="false">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.peppe-git</groupId>
@@ -23,10 +24,25 @@
         </license>
     </licenses>
 
-    <scm>
+    <developers>
+        <developer>
+            <name>Giuseppe Picciocchi</name>
+            <url>https://github.com/peppe-git</url>
+        </developer>
+    </developers>
+
+    <scm child.scm.connection.inherit.append.path="false"
+         child.scm.developerConnection.inherit.append.path="false"
+         child.scm.url.inherit.append.path="false">
         <url>https://github.com/peppe-git/resilient-llm-chain</url>
         <connection>scm:git:https://github.com/peppe-git/resilient-llm-chain.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/peppe-git/resilient-llm-chain.git</developerConnection>
     </scm>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/peppe-git/resilient-llm-chain/issues</url>
+    </issueManagement>
 
     <modules>
         <module>core</module>
@@ -49,6 +65,10 @@
         <surefire-plugin.version>3.6.1</surefire-plugin.version>
         <enforcer-plugin.version>3.6.1</enforcer-plugin.version>
         <jar-plugin.version>3.4.2</jar-plugin.version>
+        <source-plugin.version>3.4.0</source-plugin.version>
+        <javadoc-plugin.version>3.12.0</javadoc-plugin.version>
+        <gpg-plugin.version>3.2.8</gpg-plugin.version>
+        <central-publishing-plugin.version>0.12.0</central-publishing-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -161,4 +181,83 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <!--
+            Release build: sources and javadoc jars, GPG signatures and the upload to the Central
+            Publisher Portal. Active only with -Prelease. autoPublish is false: every deployment waits
+            for a manual "Publish" in the portal. See RELEASING.md.
+        -->
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>${source-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${javadoc-plugin.version}</version>
+                        <configuration>
+                            <release>${maven.compiler.release}</release>
+                            <doclint>all,-missing</doclint>
+                            <failOnWarnings>true</failOnWarnings>
+                            <quiet>true</quiet>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${gpg-plugin.version}</version>
+                        <configuration>
+                            <!-- The passphrase comes from the MAVEN_GPG_PASSPHRASE environment variable. -->
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>${central-publishing-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>false</autoPublish>
+                            <deploymentName>resilient-llm-chain ${project.version}</deploymentName>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
