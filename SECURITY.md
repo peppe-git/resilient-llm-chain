@@ -7,9 +7,12 @@ Only the latest 0.x release receives fixes. There is no release yet: the project
 
 ## Reporting a vulnerability
 
-Please do **not** open a public issue. Use GitHub's private vulnerability reporting on this repository
-("Security" tab, "Report a vulnerability"). You should get a first answer within a week. Coordinated
-disclosure is the goal: a fix is released before the details are published.
+Please do **not** open a public issue. Report it privately through GitHub:
+
+<https://github.com/peppe-git/resilient-llm-chain/security/advisories/new>
+
+You should get a first answer within a week. Coordinated disclosure is the goal: a fix is released
+before the details are published. There is no e-mail channel: GitHub is the only contact.
 
 ## What to keep in mind when using the library
 

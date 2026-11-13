@@ -6,5 +6,7 @@ as its code of conduct. Its text is incorporated here by reference.
 Everyone participating in the project's spaces (issues, pull requests, discussions) is expected to
 follow it.
 
-Report unacceptable behaviour privately to the maintainer through GitHub. If the report concerns the
-maintainer, use GitHub's own abuse reporting. Reports are handled confidentially.
+Report unacceptable behaviour privately to the maintainer, through the maintainer's GitHub profile:
+<https://github.com/peppe-git>. If the report concerns the maintainer, use
+[GitHub's own abuse reporting](https://docs.github.com/en/communities/maintaining-your-safety-on-github/reporting-abuse-or-spam).
+Reports are handled confidentially. There is no e-mail channel.
