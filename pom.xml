@@ -36,7 +36,7 @@
          child.scm.url.inherit.append.path="false">
         <url>https://github.com/peppe-git/resilient-llm-chain</url>
         <connection>scm:git:https://github.com/peppe-git/resilient-llm-chain.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/peppe-git/resilient-llm-chain.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/peppe-git/resilient-llm-chain.git</developerConnection>
     </scm>
 
     <issueManagement>
