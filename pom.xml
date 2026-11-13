@@ -59,7 +59,7 @@
         <assertj.version>3.27.7</assertj.version>
         <lettuce.version>7.9.0.RELEASE</lettuce.version>
         <testcontainers.version>2.0.5</testcontainers.version>
-        <jackson.version>2.21.7</jackson.version>
+        <jackson.version>2.22.4</jackson.version>
 
         <compiler-plugin.version>3.16.0</compiler-plugin.version>
         <surefire-plugin.version>3.6.1</surefire-plugin.version>
